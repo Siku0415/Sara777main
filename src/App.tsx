@@ -17,6 +17,12 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 
 // --- Types ---
+declare global {
+  interface Window {
+    fbq: any;
+  }
+}
+
 interface Market {
   id: string;
   name: string;
@@ -61,9 +67,14 @@ const CHARTS = [
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
-  const DOWNLOAD_LINK = "https://sara777offical.com/sara777.apk";
+  const DOWNLOAD_LINK = "https://sara777trusted.online/app/sara777.apk";
 
   useEffect(() => {
+    // Tracking PageView on mount if fbq is available
+    if (window.fbq) {
+      window.fbq('track', 'PageView');
+    }
+
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
